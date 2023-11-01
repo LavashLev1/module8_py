@@ -36,8 +36,11 @@ def get_birthdays_per_week(users):
 
 if __name__ == "__main__":
     users = [
+        {"name": "Alex Show", "birthday": datetime(1980, 5, 11).date()},
         {"name": "Jan Koum", "birthday": datetime(1976, 1, 1).date()},
-        # Додайте інших користувачів до списку
+        {"name": "Ki Plo Kun", "birthday": datetime(1991, 8, 14).date()},
+        {"name": "Anakin Skywalker", "birthday": datetime(1999, 11, 20).date()},
+        {"name": "Dean Winchester", "birthday": datetime(1953, 5, 12).date()}
     ]
 
     result = get_birthdays_per_week(users)
