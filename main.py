@@ -1,21 +1,14 @@
+from collections import defaultdict
 from datetime import date, datetime, timedelta
 
 def get_birthdays_per_week(users):
     # Створюємо словник, де ключами є назви днів тижня, а значеннями - порожні списки
-    days_of_week = {
-        "Monday": [],
-        "Tuesday": [],
-        "Wednesday": [],
-        "Thursday": [],
-        "Friday": [],
-        "Saturday": [],
-        "Sunday": [],
-    }
+    days_of_week = defaultdict(list)
     
     today = date.today()
 
     for user in users:
-        birthday = user["birthday"].date()
+        birthday = user["birthday"]
         # Перевіряємо, чи день народження вже відбувся цього року
         if birthday < today:
             # Якщо так, то додаємо день народження на наступний рік
@@ -26,7 +19,7 @@ def get_birthdays_per_week(users):
         # Знаходимо різницю між сьогоднішньою датою та датою народження
         days_until_birthday = (next_birthday - today).days
         # Отримуємо назву дня тижня для дати народження
-        day_name = next_birthday.strftime("%A")
+        day_name = next_birthday.strftime("%A") if next_birthday.weekday() not in (5, 6) else "Monday"
 
         if days_until_birthday <= 7:
             # Якщо день народження відбудеться протягом наступного тижня, додаємо користувача до відповідного дня тижня
